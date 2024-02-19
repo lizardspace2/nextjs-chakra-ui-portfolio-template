@@ -1,3 +1,4 @@
+import MintInterface from "@/components/index/MintInterface";
 import {
   Box,
 } from "@chakra-ui/react";
@@ -5,6 +6,7 @@ import {
 const Home = () => {
   return (
     <Box>
+      <MintInterface/>
     </Box>
   );
 };
