@@ -1,37 +1,55 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Box,
+  Button,
   Flex,
   Heading,
-  Slider,
-  SliderTrack,
-  SliderFilledTrack,
-  SliderThumb,
   NumberInput,
   NumberInputField,
-  Select,
-  Text,
   Progress,
+  Select,
   Stat,
+  StatGroup,
   StatLabel,
   StatNumber,
-  Button,
+  Switch,
+  Text,
   VStack,
-  HStack
+  HStack,
 } from '@chakra-ui/react';
 
 function MintInterface() {
+  // State for toggling between Mint and Repay
+  const [isMint, setIsMint] = useState(true);
+
   // Replace these functions with actual state management logic
-  const handleDepositChange = (value) => console.log(value);
-  const handleMintChange = (value) => console.log(value);
+  const handleDepositChange = (value) => console.log('Deposit:', value);
+  const handleMintChange = (value) => console.log('Mint:', value);
+  const handleToggle = () => setIsMint(!isMint);
+
+  // Dummy data for stats, replace with actual data
+  const stats = {
+    vault: 'SOL-PAI',
+    borrowAPY: 'N/A',
+    debtPAI: 0,
+    collateralSOL: 0,
+    liquidationPrice: 'N/A',
+    currentPriceSOL: 112.15,
+  };
 
   return (
     <Box p={4} bg="white" boxShadow="md" borderRadius="lg" maxWidth="sm" mx="auto">
-      <VStack spacing={4} align="stretch">
-        <Heading as="h3" size="lg" textAlign="center" pb={4}>
+      <Flex justify="center" pb={4}>
+        <Button variant={isMint ? 'solid' : 'ghost'} onClick={handleToggle}>
           Mint
-        </Heading>
+        </Button>
+        <Switch isChecked={!isMint} onChange={handleToggle} />
+        <Button variant={!isMint ? 'solid' : 'ghost'} onClick={handleToggle}>
+          Repay
+        </Button>
+      </Flex>
 
+      <VStack spacing={4} align="stretch">
         <Box>
           <Text mb={2}>I want to deposit</Text>
           <HStack>
@@ -39,10 +57,9 @@ function MintInterface() {
               <NumberInputField />
             </NumberInput>
             <Select placeholder="SOL">
-              {/* Options here */}
+              {/* Replace with actual options */}
             </Select>
           </HStack>
-          {/* Slider for percentage here */}
         </Box>
 
         <Box>
@@ -52,10 +69,9 @@ function MintInterface() {
               <NumberInputField />
             </NumberInput>
             <Select placeholder="PAI">
-              {/* Options here */}
+              {/* Replace with actual options */}
             </Select>
           </HStack>
-          {/* Slider for percentage here */}
         </Box>
 
         <Box>
@@ -63,13 +79,32 @@ function MintInterface() {
           <Progress value={20} size="sm" colorScheme="green" />
         </Box>
 
-        <VStack spacing={2}>
+        <StatGroup>
           <Stat>
             <StatLabel>Vault</StatLabel>
-            <StatNumber>SOL-PAI</StatNumber>
+            <StatNumber>{stats.vault}</StatNumber>
           </Stat>
-          {/* Repeat for each stat */}
-        </VStack>
+          <Stat>
+            <StatLabel>Borrow APY</StatLabel>
+            <StatNumber>{stats.borrowAPY}</StatNumber>
+          </Stat>
+          <Stat>
+            <StatLabel>Debt (PAI)</StatLabel>
+            <StatNumber>{stats.debtPAI}</StatNumber>
+          </Stat>
+          <Stat>
+            <StatLabel>Collateral (SOL)</StatLabel>
+            <StatNumber>{stats.collateralSOL}</StatNumber>
+          </Stat>
+          <Stat>
+            <StatLabel>Liquidation price (SOL)</StatLabel>
+            <StatNumber>{stats.liquidationPrice}</StatNumber>
+          </Stat>
+          <Stat>
+            <StatLabel>Current price (SOL)</StatLabel>
+            <StatNumber>{stats.currentPriceSOL}</StatNumber>
+          </Stat>
+        </StatGroup>
 
         <Button colorScheme="green" size="lg">
           Connect Wallet
