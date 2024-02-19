@@ -1,12 +1,13 @@
-import { chakra } from "@chakra-ui/react";
+import { Box, Image } from "@chakra-ui/react";
 import NextLink from "next/link";
 
 const Logo = () => {
   return (
     <NextLink href="/" passHref>
-      <chakra.a display="block">
-        <chakra.img src="/logo.png" alt="Logo" width="100px" height="auto" />
-      </chakra.a>
+      <Box >
+        <Image src="https://i.ibb.co/NZRp8wr/logo.png" alt="Logo"   borderRadius='full'
+  boxSize='30px'/>
+      </Box>
     </NextLink>
   );
 };

@@ -4,6 +4,7 @@ import NextLink from "next/link";
 
 import HamburgerMenu from "../UI/hamburgerMenu";
 import ColorModeToggle from "../UI/colorModeToggle";
+import ConnectWalletButton from "../UI/ConnectWalletButton";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -106,6 +107,9 @@ const Navbar = () => {
       </chakra.ul>
 
       <ColorModeToggle />
+      <Box p={4}>
+      <ConnectWalletButton  />
+      </Box>
     </Box>
   );
 };
