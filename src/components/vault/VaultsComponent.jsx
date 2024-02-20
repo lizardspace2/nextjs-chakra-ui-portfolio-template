@@ -97,10 +97,42 @@ function VaultsComponent() {
         </Flex>
       </Grid>
       {/* Data rows follow here, same as before */}
-      <Grid templateColumns="repeat(7, 1fr)" gap={6} alignItems="center">
-        {/* Data rows */}
-      </Grid>
-      <HStack spacing={4} mt={4} justifyContent="flex-end">
+<Grid templateColumns="repeat(7, 1fr)" gap={6} alignItems="center">
+  <GridItem>
+    <HStack>
+      <Icon as={CustomMarketIcon} />
+      <Text>SOL</Text>
+    </HStack>
+  </GridItem>
+  <GridItem>
+    <Text>0</Text>
+  </GridItem>
+  <GridItem>
+    <Text>0</Text>
+  </GridItem>
+  <GridItem>
+    <Text>N/A</Text>
+  </GridItem>
+  <GridItem>
+    <StatGroup>
+      <Stat>
+        <StatNumber>109.58</StatNumber>
+        <Text>Current</Text>
+      </Stat>
+      <Stat>
+        <StatNumber>N/A</StatNumber>
+        <Text>Liquidation</Text>
+      </Stat>
+    </StatGroup>
+  </GridItem>
+  <GridItem>
+    <Text>N/A% Borrow</Text>
+  </GridItem>
+  <GridItem>
+    <Progress value={90.36} size="sm" colorScheme="green" />
+  </GridItem>
+</Grid>
+<HStack spacing={4} mt={4} justifyContent="flex-end">
         <Button colorScheme="green" size="md" variant="solid" onClick={handleButtonClick} _hover={{ bg: buttonBg }}>
           Mint
         </Button>
