@@ -89,10 +89,23 @@ function MintInterface() {
     <Box p={4} bg="white" boxShadow="md" borderRadius="lg" maxWidth="sm" mx="auto">
       <Flex justify="center" pb={4}>
         <ButtonGroup isAttached>
-          <Button {...buttonStyle} variant={isMint ? 'solid' : 'ghost'} onClick={handleToggle}>
+          <Button
+            {...buttonStyle}
+            variant={isMint ? 'solid' : 'ghost'}
+            onClick={handleToggle}
+            textDecoration={isMint ? 'underline' : 'none'}
+            color={isMint ? 'green' : 'black'}
+          >
             Mint
           </Button>
-          <Button {...buttonStyle} variant={!isMint ? 'solid' : 'ghost'} onClick={handleToggle}>
+          <Button
+            {...buttonStyle}
+            variant={!isMint ? 'solid' : 'ghost'}
+            onClick={handleToggle}
+            textDecoration={!isMint ? 'underline' : 'none'}
+            color={!isMint ? 'green' : 'black'}
+            ml={5} // Add some left margin for spacing between the buttons
+          >
             Repay
           </Button>
         </ButtonGroup>
