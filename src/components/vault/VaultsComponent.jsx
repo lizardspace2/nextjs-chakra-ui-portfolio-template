@@ -9,7 +9,6 @@ import {
   InputRightElement,
   Progress,
   Stat,
-  StatLabel,
   StatNumber,
   StatGroup,
   HStack,
@@ -34,7 +33,7 @@ function VaultsComponent() {
   const buttonBg = useColorModeValue('green.500', 'green.200');
   const toast = useToast();
 
-  // Function to handle button clicks (example)
+  // Function to handle button clicks
   const handleButtonClick = () => {
     toast({
       title: 'Action performed.',
@@ -64,45 +63,53 @@ function VaultsComponent() {
         <Text fontWeight="bold">Remaining</Text>
       </Flex>
       <StatGroup>
-        <Stat>
-          <Flex align="center">
-            <Icon viewBox="0 0 200 200" color="green.500" mr={2}>
-              {/* Insert custom SVG icon here */}
-            </Icon>
-            <Text>SOL</Text>
-            <Text ml={2}>PAI</Text>
-          </Flex>
-        </Stat>
-        <Stat>
-          <StatNumber>0</StatNumber>
-        </Stat>
-        <Stat>
-          <StatNumber>0</StatNumber>
-        </Stat>
-        <Stat>
-          <Flex align="center">
-            <Progress value={150} size="sm" colorScheme="green" mr={2} />
-            <Text>N/A</Text>
-            <IconButton
-              aria-label="Minimum collateral ratio info"
-              icon={<InfoIcon />}
-              size="xs"
-              variant="ghost"
-            />
-          </Flex>
-        </Stat>
+        {/* Other Stat components */}
         <Stat>
           <Flex align="center">
             <StatNumber>109.58</StatNumber>
-            <IconButton
-              aria-label="Current price info"
-              icon={<InfoIcon />}
-              size="xs"
-              variant="ghost"
-            />
+            <Tooltip label="Current Price" aria-label="A tooltip">
+              <IconButton
+                aria-label="Current price info"
+                icon={<InfoIcon />}
+                size="xs"
+                variant="ghost"
+              />
+            </Tooltip>
+          </Flex>
+        </Stat>
+<Stat>
+          <StatNumber>0</StatNumber>
+        </Stat>
+        <Stat>
+          <StatNumber>0</StatNumber>
+        </Stat>
+        <Stat>
+          <Flex align="center">
+            <StatNumber>N/A</StatNumber>
+            <Tooltip label="Annual Percentage Yield" aria-label="A tooltip">
+              <IconButton
+                aria-label="APY info"
+                icon={<InfoIcon />}
+                size="xs"
+                variant="ghost"
+              />
+            </Tooltip>
           </Flex>
         </Stat>
         <Stat>
+          <Flex align="center">
+            <StatNumber>N/A</StatNumber>
+            <Tooltip label="Remaining Collateral" aria-label="A tooltip">
+              <IconButton
+                aria-label="Remaining collateral info"
+                icon={<InfoIcon />}
+                size="xs"
+                variant="ghost"
+              />
+            </Tooltip>
+          </Flex>
+        </Stat>
+<Stat>
           <StatNumber>N/A</StatNumber>
         </Stat>
         <Stat>
