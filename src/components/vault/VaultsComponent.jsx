@@ -24,7 +24,7 @@ import { SearchIcon, InfoIcon } from '@chakra-ui/icons';
 const CustomMarketIcon = () => (
   <svg viewBox="0 0 20 20" fill="currentColor" width="20px" height="20px">
     {/* Custom SVG path here */}
-    <path d="M5 3L19 3L12 18L5 3Z" fill="currentColor"/>
+    <path d="M5 3L19 3L12 18L5 3Z" fill="currentColor" />
   </svg>
 );
 
@@ -77,7 +77,7 @@ function VaultsComponent() {
             </Tooltip>
           </Flex>
         </Stat>
-<Stat>
+        <Stat>
           <StatNumber>0</StatNumber>
         </Stat>
         <Stat>
@@ -109,7 +109,7 @@ function VaultsComponent() {
             </Tooltip>
           </Flex>
         </Stat>
-<Stat>
+        <Stat>
           <StatNumber>N/A</StatNumber>
         </Stat>
         <Stat>
