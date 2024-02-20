@@ -175,7 +175,7 @@ function MintInterface() {
 
           <HStack spacing={4}>
             <Stat {...statStyle}>
-              <StatLabel>Collateral (SOL)</StatLabel>
+              <StatLabel>Collateral(SOL)</StatLabel>
               <StatNumber>{stats.collateralSOL}</StatNumber>
             </Stat>
             <Stat {...statStyle}>
