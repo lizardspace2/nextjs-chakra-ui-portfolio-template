@@ -100,16 +100,16 @@ function MintInterface() {
 
       <VStack spacing={4} align="stretch">
         <Box>
-        <Box>
-                  <Text fontSize="lg" fontWeight="bold">Deposit</Text>
-                  <ButtonGroup size="sm" isAttached variant="outline">
-                      {['25', '50', '75', '100'].map((percent) => (
-                        <Button key={percent} onClick={() => handlePercentageClick('deposit', parseInt(percent, 10))}>
-                          {percent}%
-                        </Button>
-                      ))}
-                    </ButtonGroup>
-        </Box>
+          <Box>
+            <Text fontSize="lg" fontWeight="bold">Deposit</Text>
+            <ButtonGroup size="sm" isAttached variant="outline">
+              {['25', '50', '75', '100'].map((percent) => (
+                <Button key={percent} onClick={() => handlePercentageClick('deposit', parseInt(percent, 10))}>
+                  {percent}%
+                </Button>
+              ))}
+            </ButtonGroup>
+          </Box>
 
           <HStack spacing={2}>
             <NumberInput defaultValue={0} min={0} max={maxDeposit} value={depositAmount} onChange={handleDepositChange}>
@@ -123,8 +123,8 @@ function MintInterface() {
 
         <Box>
           <Box>
-          <Text fontSize="lg" fontWeight="bold">Mint</Text>
-          <ButtonGroup size="sm" isAttached variant="outline">
+            <Text fontSize="lg" fontWeight="bold">Mint</Text>
+            <ButtonGroup size="sm" isAttached variant="outline">
               {['25', '50', '75', '100'].map((percent) => (
                 <Button key={percent} onClick={() => handlePercentageClick('mint', parseInt(percent, 10))}>
                   {percent}%
