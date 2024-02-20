@@ -5,6 +5,7 @@ import NextLink from "next/link";
 import HamburgerMenu from "../UI/hamburgerMenu";
 import ColorModeToggle from "../UI/colorModeToggle";
 import ConnectWalletButton from "../UI/ConnectWalletButton";
+import { Menu, MenuButton, MenuList, MenuItem, Button } from '@chakra-ui/react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,6 +16,30 @@ const Navbar = () => {
   const closeMenu = () => {
     setIsOpen(false);
   };
+  const EarnDropdown = () => (
+    <Menu>
+      <MenuButton as={Button} bg={bg} color={color} _hover={{ bg: 'gray.300', color: 'black' }} _expanded={{ bg: 'gray.300', color: 'black' }}>
+        Earn
+      </MenuButton>
+      <MenuList>
+        <NextLink href="/stake-sol" passHref>
+          <MenuItem as="a" onClick={closeMenu}>
+            Stake SOL
+          </MenuItem>
+        </NextLink>
+        <NextLink href="/stake-prt" passHref>
+          <MenuItem as="a" onClick={closeMenu}>
+            Stake PRT
+          </MenuItem>
+        </NextLink>
+        <NextLink href="/stability-pools" passHref>
+          <MenuItem as="a" onClick={closeMenu}>
+            Stability pools
+          </MenuItem>
+        </NextLink>
+      </MenuList>
+    </Menu>
+  );
 
   return (
     <Box
@@ -57,7 +82,6 @@ const Navbar = () => {
             <a onClick={closeMenu}>Mint</a>
           </NextLink>
         </chakra.li>
-
         <chakra.li
           listStyleType="none"
           px={{ lg: "8" }}
@@ -67,17 +91,14 @@ const Navbar = () => {
             <a onClick={closeMenu}>Vaults</a>
           </NextLink>
         </chakra.li>
-
         <chakra.li
           listStyleType="none"
           px={{ lg: "8" }}
           py={{ base: "3", lg: "0" }}
         >
-          <NextLink href="/earn">
-            <a onClick={closeMenu}>Earn</a>
-          </NextLink>
+          <EarnDropdown />
         </chakra.li>
-
+        
         <chakra.li
           listStyleType="none"
           px={{ lg: "8" }}
@@ -100,7 +121,7 @@ const Navbar = () => {
 
       <ColorModeToggle />
       <Box p={4}>
-      <ConnectWalletButton  />
+        <ConnectWalletButton />
       </Box>
     </Box>
   );
