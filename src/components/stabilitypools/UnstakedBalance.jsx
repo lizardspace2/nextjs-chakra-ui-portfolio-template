@@ -1,11 +1,16 @@
 import React from 'react';
 import {
-  Flex,
+  Box,
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
   Text,
   Button,
   Image,
   useColorModeValue,
-  Box,
 } from '@chakra-ui/react';
 
 const UnstakedBalance = ({ logoSrc, name, apr, token, amount, onWithdraw }) => {
@@ -14,23 +19,32 @@ const UnstakedBalance = ({ logoSrc, name, apr, token, amount, onWithdraw }) => {
 
   return (
     <Box borderWidth="1px" borderRadius="lg" borderColor={borderColor} p={5} mb={3}>
-      <Flex borderBottomWidth="1px" borderColor={borderColor} pb={2} mb={4} justify="space-between">
-        <Text color={headerTextColor} flex="1" textAlign="center">Pool</Text>
-        <Text color={headerTextColor} flex="1" textAlign="center">APY</Text>
-        <Text color={headerTextColor} flex="1" textAlign="center">Balance</Text>
-        <Text color={headerTextColor} flex="1" textAlign="center">Share</Text>
-        <Text color={headerTextColor} flex="1" textAlign="center">Pool Balance</Text>
-        <Text color={headerTextColor} flex="0.5" textAlign="center"></Text> {/* Empty for button */}
-      </Flex>
-      <Flex align="center" justify="space-between">
-        <Image src={logoSrc} boxSize="50px" mr={3} flex="1" />
-        <Text fontWeight="semibold" flex="1" textAlign="center">{name}</Text>
-        <Text fontWeight="semibold" flex="1" textAlign="center">{apr}%</Text>
-        <Text flex="1" textAlign="center">N/A {token}</Text>
-        <Text flex="1" textAlign="center">N/A</Text>
-        <Text flex="1" textAlign="center">{amount} SOL</Text>
-        <Button colorScheme="red" flex="0.5" onClick={onWithdraw}>Withdraw</Button>
-      </Flex>
+      <Table variant="simple">
+        <Thead>
+          <Tr>
+            <Th textAlign="center">Pool</Th>
+            <Th textAlign="center">APY</Th>
+            <Th textAlign="center">Balance</Th>
+            <Th textAlign="center">Share</Th>
+            <Th textAlign="center">Pool Balance</Th>
+            <Th textAlign="center">Withdraw</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          <Tr>
+            <Td textAlign="center">
+              <Image src={logoSrc} boxSize="50px" />
+            </Td>
+            <Td textAlign="center" fontWeight="semibold">{name}</Td>
+            <Td textAlign="center" fontWeight="semibold">{apr}%</Td>
+            <Td textAlign="center">N/A {token}</Td>
+            <Td textAlign="center">{amount} SOL</Td>
+            <Td textAlign="center">
+              <Button colorScheme="red" onClick={onWithdraw}>Withdraw</Button>
+            </Td>
+          </Tr>
+        </Tbody>
+      </Table>
     </Box>
   );
 };
