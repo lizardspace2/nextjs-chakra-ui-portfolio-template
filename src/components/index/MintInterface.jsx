@@ -21,7 +21,7 @@ import {
 function MintInterface() {
   const inputStyle = { borderColor: 'gray.300' };
   const buttonStyle = { bg: 'gray.200', color: 'black', _hover: { bg: 'gray.300' }, _active: { bg: 'gray.400' } };
-  const statStyle = { bg: 'gray.50', p: 3, borderRadius: 'md' };
+  const statStyle = { bg: 'gray.50', p: 3, borderRadius: 'md', textAlign: 'center' };
   const progressBarStyle = { bg: 'gray.200', borderRadius: 'md' };
   const [isMint, setIsMint] = useState(true);
   const [depositAmount, setDepositAmount] = useState(0);
@@ -100,7 +100,7 @@ function MintInterface() {
 
       <VStack spacing={4} align="stretch">
         <Box>
-          <Text>I want to deposit</Text>
+          <Text fontSize="lg" fontWeight="bold">Deposit</Text>
           <HStack spacing={2}>
             <NumberInput defaultValue={0} min={0} max={maxDeposit} value={depositAmount} onChange={handleDepositChange}>
               <NumberInputField />
@@ -119,7 +119,7 @@ function MintInterface() {
         </Box>
 
         <Box>
-          <Text>To mint</Text>
+          <Text fontSize="lg" fontWeight="bold">Mint</Text>
           <HStack spacing={2}>
             <NumberInput defaultValue={0} min={0} max={maxMint} value={mintAmount} onChange={handleMintChange}>
               <NumberInputField />
@@ -138,39 +138,41 @@ function MintInterface() {
         </Box>
 
         <Box>
-          <Text>Collateral ratio</Text>
+          <Text fontSize="lg" fontWeight="bold">Collateral Ratio</Text>
           <Progress value={20} size="sm" {...progressBarStyle} />
         </Box>
 
-        <HStack spacing={4}>
-          <Stat {...statStyle}>
-            <StatLabel>Vault</StatLabel>
-            <StatNumber>{stats.vault}</StatNumber>
-          </Stat>
-          <Stat {...statStyle}>
-            <StatLabel>Borrow APY</StatLabel>
-            <StatNumber>{stats.borrowAPY}</StatNumber>
-          </Stat>
-          <Stat {...statStyle}>
-            <StatLabel>Debt (PAI)</StatLabel>
-            <StatNumber>{stats.debtPAI}</StatNumber>
-          </Stat>
-        </HStack>
+        <StatGroup>
+          <HStack spacing={4}>
+            <Stat {...statStyle}>
+              <StatLabel>Vault</StatLabel>
+              <StatNumber>{stats.vault}</StatNumber>
+            </Stat>
+            <Stat {...statStyle}>
+              <StatLabel>Borrow APY</StatLabel>
+              <StatNumber>{stats.borrowAPY}</StatNumber>
+            </Stat>
+            <Stat {...statStyle}>
+              <StatLabel>Debt (PAI)</StatLabel>
+              <StatNumber>{stats.debtPAI}</StatNumber>
+            </Stat>
+          </HStack>
 
-        <HStack spacing={4}>
-          <Stat {...statStyle}>
-            <StatLabel>Collateral (SOL)</StatLabel>
-            <StatNumber>{stats.collateralSOL}</StatNumber>
-          </Stat>
-          <Stat {...statStyle}>
-            <StatLabel>Liquidation price (SOL)</StatLabel>
-            <StatNumber>{stats.liquidationPrice}</StatNumber>
-          </Stat>
-          <Stat {...statStyle}>
-            <StatLabel>Current price (SOL)</StatLabel>
-            <StatNumber>{stats.currentPriceSOL}</StatNumber>
-          </Stat>
-        </HStack>
+          <HStack spacing={4}>
+            <Stat {...statStyle}>
+              <StatLabel>Collateral (SOL)</StatLabel>
+              <StatNumber>{stats.collateralSOL}</StatNumber>
+            </Stat>
+            <Stat {...statStyle}>
+              <StatLabel>Liquidation Price (SOL)</StatLabel>
+              <StatNumber>{stats.liquidationPrice}</StatNumber>
+            </Stat>
+            <Stat {...statStyle}>
+              <StatLabel>Current Price (SOL)</StatLabel>
+              <StatNumber>{stats.currentPriceSOL}</StatNumber>
+            </Stat>
+          </HStack>
+        </StatGroup>
 
         <Button colorScheme="green" size="lg">
           Connect Wallet
