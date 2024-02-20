@@ -5,8 +5,8 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import UnstakedBalance from './../components/stabilitypools/UnstakedBalance';
-import Pool from './../components/stabilitypools/Pool';
-import StakePRTComponent from '@/components/stakeprt/StakePRTComponent';
+import VestingComponent from './../components/stakeprt/VestingComponent';
+import StakePRTComponent from './../components/stakeprt/StakePRTComponent';
 
 const StakingPrtComponent = () => {
   const bg = useColorModeValue('white', 'gray.700');
@@ -17,6 +17,7 @@ const StakingPrtComponent = () => {
       <Text fontSize="2xl" fontWeight="bold" mb={5}>Staking Pools</Text>
       <Box borderWidth="1px" borderRadius="lg" borderColor={borderColor} p={5} mb={5}>
         <StakePRTComponent/>
+        <VestingComponent/>
       </Box>
       <UnstakedBalance
         logoSrc="path-to-your-parrot-logo.png"
