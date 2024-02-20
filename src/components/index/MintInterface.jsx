@@ -30,11 +30,12 @@ function MintInterface() {
     iconSize: '1.5em',
     _focus: { boxShadow: '0 0 0 3px rgba(66, 153, 225, 0.6)' }
   };
-  const inputStyle = { borderColor: 'gray.300' };
   const buttonStyle = { bg: 'gray.200', color: 'gray.800', _hover: { bg: 'gray.300' }, _active: { bg: 'gray.400' } };
   const statStyle = { bg: 'gray.50', p: 3, borderRadius: 'md', textAlign: 'center', color: 'gray.800' };
   const progressBarStyle = { bg: 'gray.200', borderRadius: 'md' };
   const [isMint, setIsMint] = useState(true);
+  const [depositAmountPai, setDepositAmountPai] = useState(0);
+  const [depositAmountSol, setDepositAmountSol] = useState(0);
   const [depositAmount, setDepositAmount] = useState(0);
   const [mintAmount, setMintAmount] = useState(0);
   const [maxDeposit, setMaxDeposit] = useState(100); // dummy value
@@ -47,7 +48,7 @@ function MintInterface() {
     // setMaxMint(fetchedMaxMint);
   }, []);
 
-  const handleDepositChange = (value) => {
+  const handleDepositChangeSol = (value) => {
     if (parseFloat(value) > maxDeposit) {
       toast({
         title: 'Error',
@@ -58,21 +59,21 @@ function MintInterface() {
       });
       return;
     }
-    setDepositAmount(value);
+    setDepositAmountSol(value);
   };
 
-  const handleMintChange = (value) => {
-    if (parseFloat(value) > maxMint) {
+  const handleDepositChangePai = (value) => {
+    if (parseFloat(value) > maxDeposit) {
       toast({
         title: 'Error',
-        description: `Maximum mint amount is ${maxMint}`,
+        description: `Maximum deposit amount is ${maxDeposit}`,
         status: 'error',
         duration: 2000,
         isClosable: true,
       });
       return;
     }
-    setMintAmount(value);
+    setDepositAmountPai(value);
   };
 
   const handlePercentageClick = (type, percentage) => {
@@ -137,8 +138,8 @@ function MintInterface() {
         </Flex>
 
         <HStack spacing={2} mt={2}>
-          <NumberInput defaultValue={0} min={0} max={maxDeposit} value={depositAmount} onChange={handleDepositChange} color="gray.800">
-            <NumberInputField />
+          <NumberInput defaultValue={0} min={0} max={maxDeposit} value={depositAmountSol} onChange={handleDepositChangeSol} color="gray.800">
+            <NumberInputField color="gray.800" {...selectStyle} />
           </NumberInput>
           <Select placeholder="SOL" color="gray.800" {...selectStyle}>
             {/* Replace with actual options */}
@@ -158,10 +159,10 @@ function MintInterface() {
             </ButtonGroup>
           </Flex>
           <HStack spacing={2} mt={2}>
-            <NumberInput defaultValue={0} min={0} max={maxDeposit} value={depositAmount} onChange={handleDepositChange} color="gray.800">
-              <NumberInputField />
+            <NumberInput defaultValue={0} min={0} max={maxDeposit} value={depositAmountPai} onChange={handleDepositChangePai} color="gray.800">
+              <NumberInputField color="gray.800" {...selectStyle} />
             </NumberInput>
-            <Select placeholder="SOL" color="gray.800">
+            <Select placeholder="PAI" color="gray.800" {...selectStyle}>
               {/* Replace with actual options */}
             </Select>
           </HStack>
