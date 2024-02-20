@@ -87,6 +87,7 @@ function MintInterface() {
 
   return (
     <Box p={4} bg="white" boxShadow="md" borderRadius="lg" maxWidth="sm" mx="auto">
+      <Box>
       <Flex justify="center" pb={4}>
         <ButtonGroup isAttached>
           <Button
@@ -110,10 +111,29 @@ function MintInterface() {
           </Button>
         </ButtonGroup>
       </Flex>
+        <Flex justify="space-between" alignItems="center"> {/* Add Flex container */}
+          <Text fontSize="lg" fontWeight="bold">Mint</Text>
+          <ButtonGroup size="sm" isAttached variant="outline">
+            {['25', '50', '75', '100'].map((percent) => (
+              <Button key={percent} onClick={() => handlePercentageClick('mint', parseInt(percent, 10))}>
+                {percent}%
+              </Button>
+            ))}
+          </ButtonGroup>
+        </Flex>
+        <HStack spacing={2}>
+          <NumberInput defaultValue={0} min={0} max={maxMint} value={mintAmount} onChange={handleMintChange}>
+            <NumberInputField />
+          </NumberInput>
+          <Select placeholder="PAI">
+            {/* Replace with actual options */}
+          </Select>
+        </HStack>
+      </Box>
 
       <VStack spacing={4} align="stretch">
         <Box>
-          <Box>
+          <Flex justify="space-between" alignItems="center"> {/* Add Flex container */}
             <Text fontSize="lg" fontWeight="bold">Deposit</Text>
             <ButtonGroup size="sm" isAttached variant="outline">
               {['25', '50', '75', '100'].map((percent) => (
@@ -122,8 +142,7 @@ function MintInterface() {
                 </Button>
               ))}
             </ButtonGroup>
-          </Box>
-
+          </Flex>
           <HStack spacing={2}>
             <NumberInput defaultValue={0} min={0} max={maxDeposit} value={depositAmount} onChange={handleDepositChange}>
               <NumberInputField />
