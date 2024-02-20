@@ -88,7 +88,7 @@ function MintInterface() {
   return (
 <Box p={4} bg="white" boxShadow="md" borderRadius="lg" maxWidth="sm" mx="auto">
   <Box mb={4}> {/* Add margin bottom to create space between the two sections */}
-    <Flex justify="center" pb={4}>
+        <Flex justify="center" pb={4}>
       <ButtonGroup isAttached>
         <Button
           {...buttonStyle}
@@ -130,30 +130,29 @@ function MintInterface() {
       </Select>
     </HStack>
   </Box>
-
   <VStack spacing={4} align="stretch">
-    <Box>
-          <Flex justify="space-between" alignItems="center"> {/* Add Flex container */}
-            <Text fontSize="lg" fontWeight="bold">Deposit</Text>
-            <ButtonGroup size="sm" isAttached variant="outline">
-              {['25', '50', '75', '100'].map((percent) => (
+  <Box mb={4}> 
+    <Flex justify="space-between" alignItems="center"> {/* Add Flex container */}
+      <Text fontSize="lg" fontWeight="bold">Deposit</Text>
+      <ButtonGroup size="sm" isAttached variant="outline">
+        {['25', '50', '75', '100'].map((percent) => (
                 <Button key={percent} onClick={() => handlePercentageClick('deposit', parseInt(percent, 10))}>
                   {percent}%
                 </Button>
               ))}
-            </ButtonGroup>
-          </Flex>
-          <HStack spacing={2}>
-            <NumberInput defaultValue={0} min={0} max={maxDeposit} value={depositAmount} onChange={handleDepositChange}>
+      </ButtonGroup>
+    </Flex>
+    <HStack spacing={2} mt={2}> 
+    <NumberInput defaultValue={0} min={0} max={maxDeposit} value={depositAmount} onChange={handleDepositChange}>
               <NumberInputField />
             </NumberInput>
             <Select placeholder="SOL">
               {/* Replace with actual options */}
             </Select>
-          </HStack>
-        </Box>
+    </HStack>
+  </Box>
 
-        <Box>
+  <Box>
           <Text fontSize="lg" fontWeight="bold">Collateral Ratio</Text>
           <Progress value={20} size="sm" {...progressBarStyle} />
         </Box>
