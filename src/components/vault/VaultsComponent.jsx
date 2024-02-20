@@ -6,19 +6,18 @@ import {
   Button,
   Input,
   InputGroup,
-  InputLeftElement,
   InputRightElement,
   Progress,
   Stat,
   StatLabel,
   StatNumber,
-  StatHelpText,
   StatGroup,
-  Icon,
   HStack,
-  useColorModeValue
+  Icon,
+  IconButton,
+  useColorModeValue,
 } from '@chakra-ui/react';
-import { SearchIcon } from '@chakra-ui/icons';
+import { SearchIcon, InfoIcon } from '@chakra-ui/icons';
 
 function VaultsComponent() {
   const borderColor = useColorModeValue('gray.200', 'gray.600');
@@ -28,53 +27,67 @@ function VaultsComponent() {
       <Flex justify="space-between" align="center" mb={5}>
         <Text fontSize="xl" fontWeight="bold">Vaults</Text>
         <InputGroup maxWidth="300px">
-          <InputLeftElement pointerEvents="none">
-            <SearchIcon color="gray.400" />
-          </InputLeftElement>
+          <InputRightElement pointerEvents="none" children={<SearchIcon color="gray.400" />} />
           <Input placeholder="Search" />
         </InputGroup>
       </Flex>
-      <Box overflowX="auto">
-        <StatGroup>
-          <Stat>
-            <Flex align="center">
-              <Icon viewBox="0 0 200 200" color="green.500">
-                {/* Custom SVG for the logo */}
-              </Icon>
-              <Text ml={2}>SOL</Text>
-              <Text ml={2}>PAI</Text>
-            </Flex>
-            <StatLabel>Markets</StatLabel>
-          </Stat>
-          <Stat>
-            <StatNumber>0</StatNumber>
-            <StatLabel>Debt</StatLabel>
-          </Stat>
-          <Stat>
-            <StatNumber>0</StatNumber>
-            <StatLabel>Collateral</StatLabel>
-          </Stat>
-          <Stat>
-            <StatHelpText>N/A</StatHelpText>
-            <StatLabel>Collateral Ratio</StatLabel>
-            <Progress value={20} size="xs" colorScheme="green" />
-          </Stat>
-          <Stat>
+      <Flex wrap="wrap" justifyContent="space-between" align="center" mb={3}>
+        <Text fontWeight="bold">Markets</Text>
+        <Text fontWeight="bold">Debt</Text>
+        <Text fontWeight="bold">Collateral</Text>
+        <Text fontWeight="bold">Collateral ratio</Text>
+        <Text fontWeight="bold">Price</Text>
+        <Text fontWeight="bold">APY</Text>
+        <Text fontWeight="bold">Remaining</Text>
+      </Flex>
+      <StatGroup>
+        <Stat>
+          <Flex align="center">
+            <Icon viewBox="0 0 200 200" color="green.500" mr={2}>
+              {/* Insert custom SVG icon here */}
+            </Icon>
+            <Text>SOL</Text>
+            <Text ml={2}>PAI</Text>
+          </Flex>
+        </Stat>
+        <Stat>
+          <StatNumber>0</StatNumber>
+        </Stat>
+        <Stat>
+          <StatNumber>0</StatNumber>
+        </Stat>
+        <Stat>
+          <Flex align="center">
+            <Progress value={150} size="sm" colorScheme="green" mr={2} />
+            <Text>N/A</Text>
+            <IconButton
+              aria-label="Minimum collateral ratio info"
+              icon={<InfoIcon />}
+              size="xs"
+              variant="ghost"
+            />
+          </Flex>
+        </Stat>
+        <Stat>
+          <Flex align="center">
             <StatNumber>109.58</StatNumber>
-            <StatHelpText>Current</StatHelpText>
-            <StatLabel>Price</StatLabel>
-          </Stat>
-          <Stat>
-            <StatHelpText>N/A</StatHelpText>
-            <StatLabel>APY</StatLabel>
-          </Stat>
-          <Stat>
-            <StatHelpText>N/A</StatHelpText>
-            <StatLabel>Remaining</StatLabel>
-          </Stat>
-        </StatGroup>
-      </Box>
-      <HStack spacing={4} mt={4}>
+            <IconButton
+              aria-label="Current price info"
+              icon={<InfoIcon />}
+              size="xs"
+              variant="ghost"
+            />
+          </Flex>
+        </Stat>
+        <Stat>
+          <StatNumber>N/A</StatNumber>
+        </Stat>
+        <Stat>
+          <StatNumber>N/A</StatNumber>
+        </Stat>
+      </StatGroup>
+      <HStack spacing={4} mt={4} justifyContent="flex-end">
+        <Progress value={90.36} size="sm" colorScheme="green" width="100px" />
         <Button colorScheme="green" size="md" variant="solid">
           Mint
         </Button>
@@ -87,3 +100,4 @@ function VaultsComponent() {
 }
 
 export default VaultsComponent;
+
