@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { ChevronDownIcon } from '@chakra-ui/icons';
 import {
   Box,
   Button,
@@ -16,9 +17,19 @@ import {
   VStack,
   HStack,
   useToast,
+  select,
 } from '@chakra-ui/react';
 
 function MintInterface() {
+  const selectStyle = {
+    bg: 'white',
+    border: '2px',
+    borderColor: 'gray.300',
+    _hover: { borderColor: 'gray.400' },
+    icon: <ChevronDownIcon />,
+    iconSize: '1.5em',
+    _focus: { boxShadow: '0 0 0 3px rgba(66, 153, 225, 0.6)' }
+  };
   const inputStyle = { borderColor: 'gray.300' };
   const buttonStyle = { bg: 'gray.200', color: 'gray.800', _hover: { bg: 'gray.300' }, _active: { bg: 'gray.400' } };
   const statStyle = { bg: 'gray.50', p: 3, borderRadius: 'md', textAlign: 'center', color: 'gray.800' };
@@ -89,73 +100,74 @@ function MintInterface() {
   const buttonTextBis = isMint ? 'To mint' : 'And repay';
 
   return (
-<Box p={4} bg="white" boxShadow="md" borderRadius="lg" maxWidth="sm" mx="auto">
-  <Box mb={4}> {/* Add margin bottom to create space between the two sections */}
+    <Box p={4} bg="white" boxShadow="md" borderRadius="lg" maxWidth="sm" mx="auto">
+      <Box mb={4}> {/* Add margin bottom to create space between the two sections */}
         <Flex justify="center" pb={4}>
-      <ButtonGroup isAttached>
-        <Button
-          {...buttonStyle}
-          variant={isMint ? 'solid' : 'ghost'}
-          onClick={handleToggle}
-          textDecoration={isMint ? 'underline' : 'none'}
-          color={isMint ? 'green' : 'gray.800'}
-        >
-          Mint
-        </Button>
-        <Button
-          {...buttonStyle}
-          variant={!isMint ? 'solid' : 'ghost'}
-          onClick={handleToggle}
-          textDecoration={!isMint ? 'underline' : 'none'}
-          color={!isMint ? 'green' : 'gray.800'}
-          ml={5} // Add some left margin for spacing between the buttons
-        >
-          Repay
-        </Button>
-      </ButtonGroup>
-    </Flex>
-    <Flex justify="space-between" alignItems="center"> {/* Add Flex container */}
-      <Text fontSize="lg" fontWeight="bold" color="gray.800">{buttonText}</Text>
-      <ButtonGroup size="sm" isAttached variant="outline">
-        {['25', '50', '75', '100'].map((percent) => (
-          <Button key={percent} onClick={() => handlePercentageClick('mint', parseInt(percent, 10))} color="gray.800">
-            {percent}%
-          </Button>
-        ))}
-      </ButtonGroup>
-    </Flex>
-    <HStack spacing={2} mt={2}> {/* Add margin top to create space between this section and the one above */}
-      <NumberInput defaultValue={0} min={0} max={maxMint} value={mintAmount} onChange={handleMintChange} color="gray.800">
-        <NumberInputField />
-      </NumberInput>
-      <Select placeholder="PAI" color="gray.800">
-        {/* Replace with actual options */}
-      </Select>
-    </HStack>
-  </Box>
-  <VStack spacing={4} align="stretch">
-  <Box mb={4}> 
-    <Flex justify="space-between" alignItems="center"> {/* Add Flex container */}
-      <Text fontSize="lg" fontWeight="bold" color="gray.800">{buttonTextBis}</Text>
-      <ButtonGroup size="sm" isAttached variant="outline">
-        {['25', '50', '75', '100'].map((percent) => (
+          <ButtonGroup isAttached>
+            <Button
+              {...buttonStyle}
+              variant={isMint ? 'solid' : 'ghost'}
+              onClick={handleToggle}
+              textDecoration={isMint ? 'underline' : 'none'}
+              color={isMint ? 'green' : 'gray.800'}
+            >
+              Mint
+            </Button>
+            <Button
+              {...buttonStyle}
+              variant={!isMint ? 'solid' : 'ghost'}
+              onClick={handleToggle}
+              textDecoration={!isMint ? 'underline' : 'none'}
+              color={!isMint ? 'green' : 'gray.800'}
+              ml={5} // Add some left margin for spacing between the buttons
+            >
+              Repay
+            </Button>
+          </ButtonGroup>
+        </Flex>
+        <Flex justify="space-between" alignItems="center"> {/* Add Flex container */}
+          <Text fontSize="lg" fontWeight="bold" color="gray.800">{buttonText}</Text>
+          <ButtonGroup size="sm" isAttached variant="outline">
+            {['25', '50', '75', '100'].map((percent) => (
+              <Button key={percent} onClick={() => handlePercentageClick('mint', parseInt(percent, 10))} color="gray.800">
+                {percent}%
+              </Button>
+            ))}
+          </ButtonGroup>
+        </Flex>
+
+        <HStack spacing={2} mt={2}>
+          <NumberInput defaultValue={0} min={0} max={maxDeposit} value={depositAmount} onChange={handleDepositChange} color="gray.800">
+            <NumberInputField />
+          </NumberInput>
+          <Select placeholder="SOL" color="gray.800" {...selectStyle}>
+            {/* Replace with actual options */}
+          </Select>
+        </HStack>
+      </Box>
+      <VStack spacing={4} align="stretch">
+        <Box mb={4}>
+          <Flex justify="space-between" alignItems="center"> {/* Add Flex container */}
+            <Text fontSize="lg" fontWeight="bold" color="gray.800">{buttonTextBis}</Text>
+            <ButtonGroup size="sm" isAttached variant="outline">
+              {['25', '50', '75', '100'].map((percent) => (
                 <Button key={percent} onClick={() => handlePercentageClick('deposit', parseInt(percent, 10))} color="gray.800">
                   {percent}%
                 </Button>
               ))}
-      </ButtonGroup>
-    </Flex>
-    <HStack spacing={2} mt={2}> 
-    <NumberInput defaultValue={0} min={0} max={maxDeposit} value={depositAmount} onChange={handleDepositChange} color="gray.800">
+            </ButtonGroup>
+          </Flex>
+          <HStack spacing={2} mt={2}>
+            <NumberInput defaultValue={0} min={0} max={maxDeposit} value={depositAmount} onChange={handleDepositChange} color="gray.800">
               <NumberInputField />
             </NumberInput>
             <Select placeholder="SOL" color="gray.800">
               {/* Replace with actual options */}
             </Select>
-    </HStack>
-  </Box>
+          </HStack>
+        </Box>
 
-  <Box>
+        <Box>
           <Text fontSize="lg" fontWeight="bold" color="gray.800">Collateral Ratio</Text>
           <Progress value={20} size="sm" {...progressBarStyle} />
         </Box>
@@ -195,9 +207,9 @@ function MintInterface() {
         <Button colorScheme="green" size="lg">
           Connect Wallet
         </Button>
-  </VStack>
-</Box>
-);
+      </VStack>
+    </Box>
+  );
 }
 
 export default MintInterface;
