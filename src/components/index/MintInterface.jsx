@@ -154,27 +154,6 @@ function MintInterface() {
         </Box>
 
         <Box>
-          <Box>
-            <Text fontSize="lg" fontWeight="bold">Mint</Text>
-            <ButtonGroup size="sm" isAttached variant="outline">
-              {['25', '50', '75', '100'].map((percent) => (
-                <Button key={percent} onClick={() => handlePercentageClick('mint', parseInt(percent, 10))}>
-                  {percent}%
-                </Button>
-              ))}
-            </ButtonGroup>
-          </Box>
-          <HStack spacing={2}>
-            <NumberInput defaultValue={0} min={0} max={maxMint} value={mintAmount} onChange={handleMintChange}>
-              <NumberInputField />
-            </NumberInput>
-            <Select placeholder="PAI">
-              {/* Replace with actual options */}
-            </Select>
-          </HStack>
-        </Box>
-
-        <Box>
           <Text fontSize="lg" fontWeight="bold">Collateral Ratio</Text>
           <Progress value={20} size="sm" {...progressBarStyle} />
         </Box>
