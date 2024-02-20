@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Button,
+  ButtonGroup,
   Flex,
-  Heading,
+Heading,
   NumberInput,
   NumberInputField,
   Progress,
@@ -12,19 +13,64 @@ import {
   StatGroup,
   StatLabel,
   StatNumber,
-  Switch,
+Switch,
   Text,
   VStack,
   HStack,
+  useToast,
 } from '@chakra-ui/react';
 
 function MintInterface() {
-  // State for toggling between Mint and Repay
   const [isMint, setIsMint] = useState(true);
+  const [depositAmount, setDepositAmount] = useState(0);
+  const [mintAmount, setMintAmount] = useState(0);
+  const [maxDeposit, setMaxDeposit] = useState(100); // dummy value
+  const [maxMint, setMaxMint] = useState(50); // dummy value
+  const toast = useToast();
 
-  // Replace these functions with actual state management logic
-  const handleDepositChange = (value) => console.log('Deposit:', value);
-  const handleMintChange = (value) => console.log('Mint:', value);
+  useEffect(() => {
+    // Fetch the max deposit and mint values from your backend or blockchain
+    // setMaxDeposit(fetchedMaxDeposit);
+    // setMaxMint(fetchedMaxMint);
+  }, []);
+
+  const handleDepositChange = (value) => {
+    if (parseFloat(value) > maxDeposit) {
+      toast({
+        title: 'Error',
+        description: `Maximum deposit amount is ${maxDeposit}`,
+        status: 'error',
+        duration: 2000,
+        isClosable: true,
+      });
+      return;
+    }
+    setDepositAmount(value);
+  };
+
+  const handleMintChange = (value) => {
+    if (parseFloat(value) > maxMint) {
+      toast({
+        title: 'Error',
+        description: `Maximum mint amount is ${maxMint}`,
+        status: 'error',
+        duration: 2000,
+        isClosable: true,
+      });
+      return;
+    }
+    setMintAmount(value);
+  };
+
+  const handlePercentageClick = (type, percentage) => {
+    const value = type === 'deposit' ? maxDeposit * (percentage / 100) : maxMint * (percentage / 100);
+    if (type === 'deposit') {
+      setDepositAmount(value);
+    } else {
+      setMintAmount(value);
+    }
+  };
+
   const handleToggle = () => setIsMint(!isMint);
 
   // Dummy data for stats, replace with actual data
@@ -43,7 +89,6 @@ function MintInterface() {
         <Button variant={isMint ? 'solid' : 'ghost'} onClick={handleToggle}>
           Mint
         </Button>
-        <Switch isChecked={!isMint} onChange={handleToggle} />
         <Button variant={!isMint ? 'solid' : 'ghost'} onClick={handleToggle}>
           Repay
         </Button>
@@ -53,24 +98,38 @@ function MintInterface() {
         <Box>
           <Text mb={2}>I want to deposit</Text>
           <HStack>
-            <NumberInput defaultValue={0} min={0} onChange={handleDepositChange}>
+            <NumberInput defaultValue={0} min={0} max={maxDeposit} value={depositAmount} onChange={handleDepositChange}>
               <NumberInputField />
             </NumberInput>
             <Select placeholder="SOL">
               {/* Replace with actual options */}
             </Select>
+            <ButtonGroup size="sm" isAttached variant="outline">
+              {['25', '50', '75', '100'].map((percent) => (
+                <Button key={percent} onClick={() => handlePercentageClick('deposit', parseInt(percent, 10))}>
+                  {percent}%
+                </Button>
+              ))}
+            </ButtonGroup>
           </HStack>
         </Box>
 
         <Box>
           <Text mb={2}>To mint</Text>
           <HStack>
-            <NumberInput defaultValue={0} min={0} onChange={handleMintChange}>
+            <NumberInput defaultValue={0} min={0} max={maxMint} value={mintAmount} onChange={handleMintChange}>
               <NumberInputField />
             </NumberInput>
             <Select placeholder="PAI">
               {/* Replace with actual options */}
             </Select>
+            <ButtonGroup size="sm" isAttached variant="outline">
+              {['25', '50', '75', '100'].map((percent) => (
+                <Button key={percent} onClick={() => handlePercentageClick('mint', parseInt(percent, 10))}>
+                  {percent}%
+                </Button>
+              ))}
+            </ButtonGroup>
           </HStack>
         </Box>
 
