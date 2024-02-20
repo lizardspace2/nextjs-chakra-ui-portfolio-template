@@ -4,7 +4,6 @@ import {
   Button,
   ButtonGroup,
   Flex,
-Heading,
   NumberInput,
   NumberInputField,
   Progress,
@@ -13,14 +12,17 @@ Heading,
   StatGroup,
   StatLabel,
   StatNumber,
-Switch,
   Text,
   VStack,
-  HStack,
+HStack,
   useToast,
 } from '@chakra-ui/react';
 
 function MintInterface() {
+  const inputStyle = { borderColor: 'gray.300' };
+  const buttonStyle = { bg: 'gray.200', color: 'black', _hover: { bg: 'gray.300' }, _active: { bg: 'gray.400' } };
+  const statStyle = { bg: 'gray.50', p: 3, borderRadius: 'md' };
+  const progressBarStyle = { bg: 'gray.200', borderRadius: 'md' };
   const [isMint, setIsMint] = useState(true);
   const [depositAmount, setDepositAmount] = useState(0);
   const [mintAmount, setMintAmount] = useState(0);
@@ -86,12 +88,14 @@ function MintInterface() {
   return (
     <Box p={4} bg="white" boxShadow="md" borderRadius="lg" maxWidth="sm" mx="auto">
       <Flex justify="center" pb={4}>
-        <Button variant={isMint ? 'solid' : 'ghost'} onClick={handleToggle}>
-          Mint
-        </Button>
-        <Button variant={!isMint ? 'solid' : 'ghost'} onClick={handleToggle}>
-          Repay
-        </Button>
+        <ButtonGroup isAttached>
+          <Button {...buttonStyle} variant={isMint ? 'solid' : 'ghost'} onClick={handleToggle}>
+            Mint
+          </Button>
+          <Button {...buttonStyle} variant={!isMint ? 'solid' : 'ghost'} onClick={handleToggle}>
+            Repay
+          </Button>
+        </ButtonGroup>
       </Flex>
 
       <VStack spacing={4} align="stretch">
@@ -135,11 +139,12 @@ function MintInterface() {
 
         <Box>
           <Text mb={2}>Collateral ratio</Text>
-          <Progress value={20} size="sm" colorScheme="green" />
+          <Progress value={20} size="sm" {...progressBarStyle} />
         </Box>
 
         <StatGroup>
-          <Stat>
+          {/* Apply statStyle to each Stat component */}
+          <Stat {...statStyle}>
             <StatLabel>Vault</StatLabel>
             <StatNumber>{stats.vault}</StatNumber>
           </Stat>
