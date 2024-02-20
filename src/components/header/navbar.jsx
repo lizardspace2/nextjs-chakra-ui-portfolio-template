@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Box, chakra, useColorModeValue } from "@chakra-ui/react";
 import NextLink from "next/link";
 
@@ -31,39 +31,46 @@ const MenuHoverTrigger = ({ children }) => {
   );
 };
 
-const EarnDropdown = () => (
-  <MenuHoverTrigger>
-    <Menu isOpen={isOpen} onClose={() => setOpen(false)} autoSelect={false}>
-      <MenuButton
-        as={Button}
-        bg="transparent" // Remove default background
-        color={color}
-        _hover={{ bg: 'gray.300', color: 'black' }}
-        _expanded={{ bg: 'gray.300', color: 'black' }}
-        _focus={{ boxShadow: 'none' }}
-      >
-        Earn
-      </MenuButton>
-      <MenuList>
-        <NextLink href="/stake-sol" passHref>
-          <MenuItem as="a" onClick={closeMenu}>
-            Stake SOL
-          </MenuItem>
-        </NextLink>
-        <NextLink href="/stake-prt" passHref>
-          <MenuItem as="a" onClick={closeMenu}>
-            Stake PRT
-          </MenuItem>
-        </NextLink>
-        <NextLink href="/stability-pools" passHref>
-          <MenuItem as="a" onClick={closeMenu}>
-            Stability pools
-          </MenuItem>
-        </NextLink>
-      </MenuList>
-    </Menu>
-  </MenuHoverTrigger>
-);
+const EarnDropdown = () => {
+  const [isOpen, setOpen] = useState(false);
+
+  return (
+    <MenuHoverTrigger>
+      <Menu isOpen={isOpen} onOpen={() => setOpen(true)} onClose={() => setOpen(false)} autoSelect={false}>
+        <MenuButton
+          as={Button}
+          bg="transparent"
+          color={color}
+          _hover={{ bg: 'gray.300', color: 'black' }}
+          _expanded={{ bg: 'gray.300', color: 'black' }}
+          _focus={{ boxShadow: 'none' }}
+          onMouseEnter={() => setOpen(true)} // Open the menu on mouse enter
+          onMouseLeave={() => setOpen(false)} // Close the menu on mouse leave
+        >
+          Earn
+        </MenuButton>
+        <MenuList onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
+          <NextLink href="/stake-sol" passHref>
+            <MenuItem as="a" onClick={closeMenu}>
+              Stake SOL
+            </MenuItem>
+          </NextLink>
+          <NextLink href="/stake-prt" passHref>
+            <MenuItem as="a" onClick={closeMenu}>
+              Stake PRT
+            </MenuItem>
+          </NextLink>
+          <NextLink href="/stability-pools" passHref>
+            <MenuItem as="a" onClick={closeMenu}>
+              Stability pools
+            </MenuItem>
+          </NextLink>
+        </MenuList>
+      </Menu>
+    </MenuHoverTrigger>
+  );
+};
+
 
 return (
 <Box
