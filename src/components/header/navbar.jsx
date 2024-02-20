@@ -60,7 +60,7 @@ const EarnDropdown = () => {
               Stake PRT
             </MenuItem>
           </NextLink>
-          <NextLink href="/stability-pools" passHref>
+          <NextLink href="/stability-pool" passHref>
             <MenuItem as="a" onClick={closeMenu}>
               Stability pools
             </MenuItem>
