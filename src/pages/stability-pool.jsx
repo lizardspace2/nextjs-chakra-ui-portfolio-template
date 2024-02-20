@@ -15,9 +15,9 @@ const StakingPoolsComponent = () => {
     <Box borderWidth="1px" borderRadius="lg" borderColor={borderColor} p={5} bg={bg}>
       <Text fontSize="2xl" fontWeight="bold" mb={5}>Staking Pools</Text>
       <Box borderWidth="1px" borderRadius="lg" borderColor={borderColor} p={5} mb={5}>
-        <UnstakedBalance/>
+        <Pool/>
       </Box>
-      <Pool
+      <UnstakedBalance
         logoSrc="path-to-your-parrot-logo.png"
         name="Parrot Pool"
         apr={7}
