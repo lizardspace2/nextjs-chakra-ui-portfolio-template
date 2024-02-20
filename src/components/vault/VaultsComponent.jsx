@@ -15,17 +15,40 @@ import {
   HStack,
   Icon,
   IconButton,
+  Tooltip,
   useColorModeValue,
+  useToast,
 } from '@chakra-ui/react';
 import { SearchIcon, InfoIcon } from '@chakra-ui/icons';
 
+// Custom SVG icon component (example)
+const CustomMarketIcon = () => (
+  <svg viewBox="0 0 20 20" fill="currentColor" width="20px" height="20px">
+    {/* Custom SVG path here */}
+    <path d="M5 3L19 3L12 18L5 3Z" fill="currentColor"/>
+  </svg>
+);
+
 function VaultsComponent() {
-  const borderColor = useColorModeValue('gray.200', 'gray.600');
+  const borderColor = useColorModeValue('gray.200', 'gray.700');
+  const buttonBg = useColorModeValue('green.500', 'green.200');
+  const toast = useToast();
+
+  // Function to handle button clicks (example)
+  const handleButtonClick = () => {
+    toast({
+      title: 'Action performed.',
+      description: "We've performed the requested action.",
+      status: 'success',
+      duration: 5000,
+      isClosable: true,
+    });
+  };
 
   return (
-    <Box borderWidth="1px" borderRadius="lg" borderColor={borderColor} p={5}>
+    <Box borderWidth="1px" borderRadius="lg" borderColor={borderColor} p={5} bg={useColorModeValue('white', 'gray.800')}>
       <Flex justify="space-between" align="center" mb={5}>
-        <Text fontSize="xl" fontWeight="bold">Vaults</Text>
+        <Text fontSize="2xl" fontWeight="bold" color={useColorModeValue('gray.700', 'white')}>Vaults</Text>
         <InputGroup maxWidth="300px">
           <InputRightElement pointerEvents="none" children={<SearchIcon color="gray.400" />} />
           <Input placeholder="Search" />
@@ -87,11 +110,10 @@ function VaultsComponent() {
         </Stat>
       </StatGroup>
       <HStack spacing={4} mt={4} justifyContent="flex-end">
-        <Progress value={90.36} size="sm" colorScheme="green" width="100px" />
-        <Button colorScheme="green" size="md" variant="solid">
+        <Button colorScheme="green" size="md" variant="solid" onClick={handleButtonClick} _hover={{ bg: buttonBg }}>
           Mint
         </Button>
-        <Button size="md" variant="outline">
+        <Button size="md" variant="outline" onClick={handleButtonClick}>
           Repay
         </Button>
       </HStack>
@@ -100,4 +122,3 @@ function VaultsComponent() {
 }
 
 export default VaultsComponent;
-
