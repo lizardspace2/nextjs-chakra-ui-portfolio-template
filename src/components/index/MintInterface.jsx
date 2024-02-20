@@ -20,8 +20,8 @@ import {
 
 function MintInterface() {
   const inputStyle = { borderColor: 'gray.300' };
-  const buttonStyle = { bg: 'gray.200', color: 'black', _hover: { bg: 'gray.300' }, _active: { bg: 'gray.400' } };
-  const statStyle = { bg: 'gray.50', p: 3, borderRadius: 'md', textAlign: 'center' };
+  const buttonStyle = { bg: 'gray.200', color: 'gray.800', _hover: { bg: 'gray.300' }, _active: { bg: 'gray.400' } }; // Adjusted color here
+  const statStyle = { bg: 'gray.50', p: 3, borderRadius: 'md', textAlign: 'center', color: 'gray.800' }; // Adjusted color here
   const progressBarStyle = { bg: 'gray.200', borderRadius: 'md' };
   const [isMint, setIsMint] = useState(true);
   const [depositAmount, setDepositAmount] = useState(0);
@@ -95,7 +95,7 @@ function MintInterface() {
           variant={isMint ? 'solid' : 'ghost'}
           onClick={handleToggle}
           textDecoration={isMint ? 'underline' : 'none'}
-          color={isMint ? 'green' : 'black'}
+          color={isMint ? 'green' : 'gray.800'} // Adjusted color here
         >
           Mint
         </Button>
@@ -104,7 +104,7 @@ function MintInterface() {
           variant={!isMint ? 'solid' : 'ghost'}
           onClick={handleToggle}
           textDecoration={!isMint ? 'underline' : 'none'}
-          color={!isMint ? 'green' : 'black'}
+          color={!isMint ? 'green' : 'gray.800'} // Adjusted color here
           ml={5} // Add some left margin for spacing between the buttons
         >
           Repay
@@ -112,7 +112,7 @@ function MintInterface() {
       </ButtonGroup>
     </Flex>
     <Flex justify="space-between" alignItems="center"> {/* Add Flex container */}
-      <Text fontSize="lg" fontWeight="bold">Mint</Text>
+      <Text fontSize="lg" fontWeight="bold" color="gray.800">Mint</Text> {/* Adjusted color here */}
       <ButtonGroup size="sm" isAttached variant="outline">
         {['25', '50', '75', '100'].map((percent) => (
           <Button key={percent} onClick={() => handlePercentageClick('mint', parseInt(percent, 10))}>
@@ -133,7 +133,7 @@ function MintInterface() {
   <VStack spacing={4} align="stretch">
   <Box mb={4}> 
     <Flex justify="space-between" alignItems="center"> {/* Add Flex container */}
-      <Text fontSize="lg" fontWeight="bold">Deposit</Text>
+      <Text fontSize="lg" fontWeight="bold" color="gray.800">Deposit</Text> {/* Adjusted color here */}
       <ButtonGroup size="sm" isAttached variant="outline">
         {['25', '50', '75', '100'].map((percent) => (
                 <Button key={percent} onClick={() => handlePercentageClick('deposit', parseInt(percent, 10))}>
@@ -153,7 +153,7 @@ function MintInterface() {
   </Box>
 
   <Box>
-          <Text fontSize="lg" fontWeight="bold">Collateral Ratio</Text>
+          <Text fontSize="lg" fontWeight="bold" color="gray.800">Collateral Ratio</Text> {/* Adjusted color here */}
           <Progress value={20} size="sm" {...progressBarStyle} />
         </Box>
 
