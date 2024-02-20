@@ -14,7 +14,7 @@ import {
   StatNumber,
   Text,
   VStack,
-HStack,
+  HStack,
   useToast,
 } from '@chakra-ui/react';
 
@@ -100,8 +100,8 @@ function MintInterface() {
 
       <VStack spacing={4} align="stretch">
         <Box>
-          <Text mb={2}>I want to deposit</Text>
-          <HStack>
+          <Text>I want to deposit</Text>
+          <HStack spacing={2}>
             <NumberInput defaultValue={0} min={0} max={maxDeposit} value={depositAmount} onChange={handleDepositChange}>
               <NumberInputField />
             </NumberInput>
@@ -119,8 +119,8 @@ function MintInterface() {
         </Box>
 
         <Box>
-          <Text mb={2}>To mint</Text>
-          <HStack>
+          <Text>To mint</Text>
+          <HStack spacing={2}>
             <NumberInput defaultValue={0} min={0} max={maxMint} value={mintAmount} onChange={handleMintChange}>
               <NumberInputField />
             </NumberInput>
@@ -138,37 +138,39 @@ function MintInterface() {
         </Box>
 
         <Box>
-          <Text mb={2}>Collateral ratio</Text>
+          <Text>Collateral ratio</Text>
           <Progress value={20} size="sm" {...progressBarStyle} />
         </Box>
 
-        <StatGroup>
-          {/* Apply statStyle to each Stat component */}
+        <HStack spacing={4}>
           <Stat {...statStyle}>
             <StatLabel>Vault</StatLabel>
             <StatNumber>{stats.vault}</StatNumber>
           </Stat>
-          <Stat>
+          <Stat {...statStyle}>
             <StatLabel>Borrow APY</StatLabel>
             <StatNumber>{stats.borrowAPY}</StatNumber>
           </Stat>
-          <Stat>
+          <Stat {...statStyle}>
             <StatLabel>Debt (PAI)</StatLabel>
             <StatNumber>{stats.debtPAI}</StatNumber>
           </Stat>
-          <Stat>
+        </HStack>
+
+        <HStack spacing={4}>
+          <Stat {...statStyle}>
             <StatLabel>Collateral (SOL)</StatLabel>
             <StatNumber>{stats.collateralSOL}</StatNumber>
           </Stat>
-          <Stat>
+          <Stat {...statStyle}>
             <StatLabel>Liquidation price (SOL)</StatLabel>
             <StatNumber>{stats.liquidationPrice}</StatNumber>
           </Stat>
-          <Stat>
+          <Stat {...statStyle}>
             <StatLabel>Current price (SOL)</StatLabel>
             <StatNumber>{stats.currentPriceSOL}</StatNumber>
           </Stat>
-        </StatGroup>
+        </HStack>
 
         <Button colorScheme="green" size="lg">
           Connect Wallet
