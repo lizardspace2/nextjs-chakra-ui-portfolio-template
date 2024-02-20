@@ -9,7 +9,7 @@ import {
   InputRightElement,
   Progress,
   Grid,
-  Stat,
+Stat,
   StatNumber,
   StatGroup,
   HStack,
@@ -54,62 +54,51 @@ function VaultsComponent() {
           <Input placeholder="Search" />
         </InputGroup>
       </Flex>
-      <Grid templateColumns="repeat(7, 1fr)" gap={6} mb={3}>
+      <Grid templateColumns="repeat(7, 1fr)" gap={6} mb={3} alignItems="center">
         <Text fontWeight="bold">Markets</Text>
         <Text fontWeight="bold">Debt</Text>
         <Text fontWeight="bold">Collateral</Text>
         <Text fontWeight="bold">Collateral ratio</Text>
-        <Text fontWeight="bold">Price</Text>
-        <Text fontWeight="bold">APY</Text>
-        <Text fontWeight="bold">Remaining</Text>
-      </Grid>
-      {/* Repeat this GridItem structure for each data row */}
-      <Grid templateColumns="repeat(7, 1fr)" gap={6} alignItems="center">
-        <GridItem>
-          <Flex align="center">
-            <Icon as={CustomMarketIcon} color="green.500" mr={2} />
-            <Text>SOL</Text>
-            <Text ml={2}>PAI</Text>
-          </Flex>
-        </GridItem>
-        <GridItem>0</GridItem>
-        <GridItem>0</GridItem>
-        <GridItem>
-          <Progress value={150} size="sm" colorScheme="green" width="100%" />
-        </GridItem>
-        <GridItem>
-          <Flex align="center">
-            <Text>109.58</Text>
-            <Tooltip label="Current Price" aria-label="A tooltip">
-              <IconButton
-                aria-label="Current price info"
-                icon={<InfoIcon />}
-                size="xs"
-                variant="ghost"
-              />
-            </Tooltip>
-          </Flex>
-        </GridItem>
-        <GridItem>
+        <Flex align="center">
+          <Text fontWeight="bold">Price</Text>
+          <Tooltip label="Current Price" aria-label="A tooltip">
+            <IconButton
+              aria-label="Current price info"
+              icon={<InfoIcon />}
+              size="xs"
+              variant="ghost"
+              ml={2}
+            />
+          </Tooltip>
+        </Flex>
+        <Flex align="center">
+          <Text fontWeight="bold">APY</Text>
           <Tooltip label="Annual Percentage Yield" aria-label="A tooltip">
             <IconButton
               aria-label="APY info"
               icon={<InfoIcon />}
               size="xs"
               variant="ghost"
+              ml={2}
             />
           </Tooltip>
-        </GridItem>
-        <GridItem>
+        </Flex>
+        <Flex align="center">
+          <Text fontWeight="bold">Remaining</Text>
           <Tooltip label="Remaining Collateral" aria-label="A tooltip">
             <IconButton
               aria-label="Remaining collateral info"
               icon={<InfoIcon />}
               size="xs"
               variant="ghost"
+              ml={2}
             />
           </Tooltip>
-        </GridItem>
+        </Flex>
+      </Grid>
+      {/* Data rows follow here, same as before */}
+      <Grid templateColumns="repeat(7, 1fr)" gap={6} alignItems="center">
+        {/* Data rows */}
       </Grid>
       <HStack spacing={4} mt={4} justifyContent="flex-end">
         <Button colorScheme="green" size="md" variant="solid" onClick={handleButtonClick} _hover={{ bg: buttonBg }}>
