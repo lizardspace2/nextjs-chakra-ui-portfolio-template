@@ -85,6 +85,9 @@ function MintInterface() {
     currentPriceSOL: 112.15,
   };
 
+  const buttonText = isMint ? 'I want to deposit' : 'Withdraw Collateral';
+  const buttonTextBis = isMint ? 'To mint' : 'And repay';
+
   return (
 <Box p={4} bg="white" boxShadow="md" borderRadius="lg" maxWidth="sm" mx="auto">
   <Box mb={4}> {/* Add margin bottom to create space between the two sections */}
@@ -112,7 +115,7 @@ function MintInterface() {
       </ButtonGroup>
     </Flex>
     <Flex justify="space-between" alignItems="center"> {/* Add Flex container */}
-      <Text fontSize="lg" fontWeight="bold" color="gray.800">Mint</Text>
+      <Text fontSize="lg" fontWeight="bold" color="gray.800">{buttonText}</Text>
       <ButtonGroup size="sm" isAttached variant="outline">
         {['25', '50', '75', '100'].map((percent) => (
           <Button key={percent} onClick={() => handlePercentageClick('mint', parseInt(percent, 10))} color="gray.800">
@@ -133,7 +136,7 @@ function MintInterface() {
   <VStack spacing={4} align="stretch">
   <Box mb={4}> 
     <Flex justify="space-between" alignItems="center"> {/* Add Flex container */}
-      <Text fontSize="lg" fontWeight="bold" color="gray.800">Deposit</Text>
+      <Text fontSize="lg" fontWeight="bold" color="gray.800">{buttonTextBis}</Text>
       <ButtonGroup size="sm" isAttached variant="outline">
         {['25', '50', '75', '100'].map((percent) => (
                 <Button key={percent} onClick={() => handlePercentageClick('deposit', parseInt(percent, 10))} color="gray.800">
