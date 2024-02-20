@@ -8,10 +8,12 @@ import {
   InputGroup,
   InputRightElement,
   Progress,
+  Grid,
   Stat,
   StatNumber,
   StatGroup,
   HStack,
+  GridItem,
   Icon,
   IconButton,
   Tooltip,
@@ -20,10 +22,9 @@ import {
 } from '@chakra-ui/react';
 import { SearchIcon, InfoIcon } from '@chakra-ui/icons';
 
-// Custom SVG icon component (example)
+// Custom SVG icon component
 const CustomMarketIcon = () => (
   <svg viewBox="0 0 20 20" fill="currentColor" width="20px" height="20px">
-    {/* Custom SVG path here */}
     <path d="M5 3L19 3L12 18L5 3Z" fill="currentColor" />
   </svg>
 );
@@ -53,7 +54,7 @@ function VaultsComponent() {
           <Input placeholder="Search" />
         </InputGroup>
       </Flex>
-      <Flex wrap="wrap" justifyContent="space-between" align="center" mb={3}>
+      <Grid templateColumns="repeat(7, 1fr)" gap={6} mb={3}>
         <Text fontWeight="bold">Markets</Text>
         <Text fontWeight="bold">Debt</Text>
         <Text fontWeight="bold">Collateral</Text>
@@ -61,12 +62,24 @@ function VaultsComponent() {
         <Text fontWeight="bold">Price</Text>
         <Text fontWeight="bold">APY</Text>
         <Text fontWeight="bold">Remaining</Text>
-      </Flex>
-      <StatGroup>
-        {/* Other Stat components */}
-        <Stat>
+      </Grid>
+      {/* Repeat this GridItem structure for each data row */}
+      <Grid templateColumns="repeat(7, 1fr)" gap={6} alignItems="center">
+        <GridItem>
           <Flex align="center">
-            <StatNumber>109.58</StatNumber>
+            <Icon as={CustomMarketIcon} color="green.500" mr={2} />
+            <Text>SOL</Text>
+            <Text ml={2}>PAI</Text>
+          </Flex>
+        </GridItem>
+        <GridItem>0</GridItem>
+        <GridItem>0</GridItem>
+        <GridItem>
+          <Progress value={150} size="sm" colorScheme="green" width="100%" />
+        </GridItem>
+        <GridItem>
+          <Flex align="center">
+            <Text>109.58</Text>
             <Tooltip label="Current Price" aria-label="A tooltip">
               <IconButton
                 aria-label="Current price info"
@@ -76,46 +89,28 @@ function VaultsComponent() {
               />
             </Tooltip>
           </Flex>
-        </Stat>
-        <Stat>
-          <StatNumber>0</StatNumber>
-        </Stat>
-        <Stat>
-          <StatNumber>0</StatNumber>
-        </Stat>
-        <Stat>
-          <Flex align="center">
-            <StatNumber>N/A</StatNumber>
-            <Tooltip label="Annual Percentage Yield" aria-label="A tooltip">
-              <IconButton
-                aria-label="APY info"
-                icon={<InfoIcon />}
-                size="xs"
-                variant="ghost"
-              />
-            </Tooltip>
-          </Flex>
-        </Stat>
-        <Stat>
-          <Flex align="center">
-            <StatNumber>N/A</StatNumber>
-            <Tooltip label="Remaining Collateral" aria-label="A tooltip">
-              <IconButton
-                aria-label="Remaining collateral info"
-                icon={<InfoIcon />}
-                size="xs"
-                variant="ghost"
-              />
-            </Tooltip>
-          </Flex>
-        </Stat>
-        <Stat>
-          <StatNumber>N/A</StatNumber>
-        </Stat>
-        <Stat>
-          <StatNumber>N/A</StatNumber>
-        </Stat>
-      </StatGroup>
+        </GridItem>
+        <GridItem>
+          <Tooltip label="Annual Percentage Yield" aria-label="A tooltip">
+            <IconButton
+              aria-label="APY info"
+              icon={<InfoIcon />}
+              size="xs"
+              variant="ghost"
+            />
+          </Tooltip>
+        </GridItem>
+        <GridItem>
+          <Tooltip label="Remaining Collateral" aria-label="A tooltip">
+            <IconButton
+              aria-label="Remaining collateral info"
+              icon={<InfoIcon />}
+              size="xs"
+              variant="ghost"
+            />
+          </Tooltip>
+        </GridItem>
+      </Grid>
       <HStack spacing={4} mt={4} justifyContent="flex-end">
         <Button colorScheme="green" size="md" variant="solid" onClick={handleButtonClick} _hover={{ bg: buttonBg }}>
           Mint
