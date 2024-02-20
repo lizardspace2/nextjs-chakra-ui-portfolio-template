@@ -34,9 +34,9 @@ const VestingComponent = () => {
     });
   };
 
-  return (
+return (
     <Box borderWidth="1px" borderRadius="lg" overflow="hidden" p={4}>
-      <Flex justifyContent="space-between" alignItems="center">
+      <Flex justifyContent="space-between" alignItems="center" mb={4}>
         <Text fontSize="xl" fontWeight="bold">
           Vest yPRT
         </Text>
@@ -67,7 +67,7 @@ const VestingComponent = () => {
         </Button>
       </HStack>
       <Box borderWidth="1px" borderRadius="lg" overflow="hidden" p={4} mb={4}>
-        <HStack justifyContent="space-between">
+      <HStack justifyContent="space-between">
           <Text>PRT unlocked:</Text>
           <Text fontWeight="bold">{userData.unlocked}</Text>
         </HStack>
@@ -75,11 +75,13 @@ const VestingComponent = () => {
           <Text>Unlock date:</Text>
           <Text fontWeight="bold">{userData.unlockDate}</Text>
         </HStack>
-        <Button colorScheme="teal" variant="solid" onClick={claimTokens}>
-        Claim PRT
-      </Button>
       </Box>
-
+      <Flex justifyContent="flex-end">
+        <Button colorScheme="teal" variant="solid" onClick={claimTokens}>
+          Claim PRT
+        </Button>
+      </Flex>
+      {/* ... rest of your component ... */}
     </Box>
   );
 };
