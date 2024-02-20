@@ -16,9 +16,32 @@ const Navbar = () => {
   const closeMenu = () => {
     setIsOpen(false);
   };
-  const EarnDropdown = () => (
-    <Menu>
-      <MenuButton as={Button} bg={bg} color={color} _hover={{ bg: 'gray.300', color: 'black' }} _expanded={{ bg: 'gray.300', color: 'black' }}>
+const MenuHoverTrigger = ({ children }) => {
+  const [isOpen, setOpen] = useState(false);
+
+  return (
+    <Box
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+    >
+      {React.cloneElement(children, {
+        isOpen,
+      })}
+    </Box>
+  );
+};
+
+const EarnDropdown = () => (
+  <MenuHoverTrigger>
+    <Menu isOpen={isOpen} onClose={() => setOpen(false)} autoSelect={false}>
+      <MenuButton
+        as={Button}
+        bg="transparent" // Remove default background
+        color={color}
+        _hover={{ bg: 'gray.300', color: 'black' }}
+        _expanded={{ bg: 'gray.300', color: 'black' }}
+        _focus={{ boxShadow: 'none' }}
+      >
         Earn
       </MenuButton>
       <MenuList>
@@ -39,10 +62,11 @@ const Navbar = () => {
         </NextLink>
       </MenuList>
     </Menu>
-  );
+  </MenuHoverTrigger>
+);
 
-  return (
-    <Box
+return (
+<Box
       as="nav"
       display="flex"
       flexDir={{ base: "row-reverse", lg: "row" }}
